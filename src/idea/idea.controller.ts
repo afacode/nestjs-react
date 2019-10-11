@@ -1,5 +1,6 @@
-import { Controller, Get, Query, Post, Param, Put, UseFilters } from '@nestjs/common';
+import { Controller, Get, Query, Post, Param, Put, UseFilters, Body, Delete } from '@nestjs/common';
 import { IdeaService } from './idea.service';
+import { IdeaDto } from './idea.dto'
 
 @Controller('idea')
 export class IdeaController {
@@ -16,13 +17,18 @@ export class IdeaController {
   }
 
   @Post()
-  getIdea(@Query() query) {
-    return this.ideaService.create(query);
+  getIdea(@Body() body: IdeaDto) {
+    return this.ideaService.create(body);
   }
 
-  @Put()
-  updateIdea() {
-    return 'update idea';
+  @Put(':id')
+  updateIdea(@Param('id') id: string, @Body() body: IdeaDto) {
+    return this.ideaService.update(id, body);
+  }
+
+  @Delete(':id')
+  remove(@Param('id') id: string) {
+    return this.ideaService.remove(id);
   }
 
 }
