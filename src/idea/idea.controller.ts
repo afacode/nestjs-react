@@ -1,6 +1,6 @@
 import { Controller, Get, Query, Post, Param, Put, UseFilters, Body, Delete } from '@nestjs/common';
 import { IdeaService } from './idea.service';
-import { IdeaDto } from './idea.dto'
+import { IdeaDto } from './idea.dto';
 
 @Controller('idea')
 export class IdeaController {
